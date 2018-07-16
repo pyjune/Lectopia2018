@@ -22,7 +22,7 @@ int main(void)
 		int maxIdx = 0;
 		for (int i = 1; i < 10; i++)
 		{
-			if (cnt[i] > cnt[maxIdx])
+			if (cnt[i] >= cnt[maxIdx])
 				maxIdx = i;
 		}
 		printf("#%d %d %d\n", tc, maxIdx, cnt[maxIdx]);
