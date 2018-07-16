@@ -18,6 +18,19 @@ int main(void)
 			scanf("%1d", &num);
 			cnt[num]++;		// 숫자의 개수를 기록..
 		}
+		/*
+		int a[100];
+		for (int i = 0; i < N; i++)
+		{
+			int num;
+			scanf("%1d", &a[i]);
+			
+		}
+		for (int i = 0; i < N; i++)
+		{
+			cnt[a[i]]++;
+		}
+		*/
 		// 최대값의 인덱스 찾기
 		int maxIdx = 0;
 		for (int i = 1; i < 10; i++)
