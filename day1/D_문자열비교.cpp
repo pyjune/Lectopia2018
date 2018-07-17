@@ -26,10 +26,10 @@ int main(void)
 			for (j = 0; j < N; j++)
 			{
 				if (p[j] != t[i + j])
-					break;
+					break; // 패턴과 글자가 다른 경우 중단. 다음 구간으로.
 			}
-			if (j == N)
-				break;
+			if (j == N) // 패턴과 일치하는 경우.
+				break; // 다음 구간 비교가 불필요..
 		}
 		if (j == N)
 		{
