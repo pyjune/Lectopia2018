@@ -35,7 +35,10 @@ int main(void)
 		minV = N*N;
 		find2(sr, sc, N, 0);
 		//int r = find(sr, sc, N);
-		printf("#%d %d\n", tc, minV-1);
+		if(minV==N*N)
+			printf("#%d 0\n", tc);
+		else
+			printf("#%d %d\n", tc, minV-1);
 	}
 }
 // 지나온 칸수 k를 추가로 전달...
