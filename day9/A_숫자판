@@ -1,0 +1,82 @@
+#include <stdio.h>
+
+int map[10][10];
+int used[10][10];
+int num[10];
+
+int find(int N, int M);
+int comp(int r, int c, int k, int N, int M); // map[r][c]에 num[k]가 있는지 확인..
+
+int dr[] = { 0, 1, 0, -1 };
+int dc[] = { 1, 0, -1, 0 };
+
+int main(void)
+{
+	int T;
+
+	freopen("Text.txt", "r", stdin);
+	scanf("%d", &T);
+	for (int tc = 1; tc <= T; tc++)
+	{
+		int N, M;
+		scanf("%d", &N);
+		for (int i = 0; i < N; i++)
+			scanf("%d", &num[i]);
+		scanf("%d", &M);
+		for (int i = 0; i < M; i++)
+		{
+			for (int j = 0; j < M; j++)
+			{
+				used[i][j] = 0;
+				scanf("%d", &map[i][j]);
+			}
+		}
+		int r = find(N, M);
+		printf("#%d %d\n", tc, r);
+	}
+}
+
+int comp(int r, int c, int k, int N, int M)
+{
+	if (k == N)
+	{
+		return 1;
+	}
+	else
+	{// map[r][c] 주변에 num[k]가 있는지 확인...
+		used[r][c] = 1;
+		for (int i = 0; i < 4; i++)
+		{
+			int nr = r + dr[i];
+			int nc = c + dc[i];
+			if (nr >= 0 && nr < M && nc >= 0 && nc < M)
+			{
+				if (map[nr][nc] == num[k] && used[nr][nc]==0)
+				{
+					if (comp(nr, nc, k + 1, N, M))
+						return 1; // comp()의 결과가 0이 아니면..
+				}
+			}
+		}
+		used[r][c] = 0;
+		return 0;
+	}
+}
+
+int find(int N, int M)
+{
+	int r = 0;
+	for (int i = 0; i < M; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			if (map[i][j] == num[0]) // 수열의 첫 숫자를 찾으면
+			{
+				r = comp(i, j, 1, N, M); // 나머지 숫자를 비교
+				if (r == 1)
+					return 1; // 수열이 숫자판에 있는 경우
+			}
+		}
+	}
+	return 0; // 찾는 수열이 숫자판에 없는 경우
+}
